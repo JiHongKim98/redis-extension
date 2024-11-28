@@ -1,0 +1,74 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
+plugins {
+    id 'java'
+    id 'com.vanniktech.maven.publish' version '0.30.0'
+    id 'signing'
+}
+
+group = 'io.github.jihongkim98'
+version = '0.1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:3.4.0")
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+mavenPublishing {
+    signAllPublications()
+
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    coordinates('io.github.jihongkim98', 'redis-extension', '0.1.0')
+
+    pom {
+        name = 'redis-extension'
+        inceptionYear = '2024'
+        description = 'Spring Data Redis Message Extension Library'
+        url = '<https://github.com/jihongkim98/redis-extension>'
+
+        licenses {
+            license {
+                name = 'Apache License'
+                url = '<https://github.com/jihongkim/redis-extension/blob/main/LICENSE>'
+            }
+        }
+
+        developers {
+            developer {
+                id = 'jihongkim98'
+                name = 'JiHong Kim'
+                email = 'kinjihong9598@gmail.com'
+            }
+        }
+
+        scm {
+            connection = 'scm:git:github.com/jihongkim98/redis-extension.git'
+            developerConnection = 'scm:git:ssh://github.com:jihongkim98/redis-extension.git'
+            url = '<https://github.com/jihongkim98/redis-extension/tree/main>'
+        }
+    }
+}
+
+signing {
+    sign publishing.publications
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
