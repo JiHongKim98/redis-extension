@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
@@ -17,6 +16,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.MethodIntrospector;
 import org.springframework.core.MethodIntrospector.MetadataLookup;
 import org.springframework.core.annotation.AnnotatedElementUtils;
+import org.springframework.core.log.LogAccessor;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.util.Assert;
@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
 public class RedisBroadcastAnnotationBeanPostProcessor implements
         BeanPostProcessor, SmartInitializingSingleton, ApplicationContextAware {
 
-    private final Log logger = LogFactory.getLog(RedisBroadcastAnnotationBeanPostProcessor.class);
+    private final LogAccessor logger = new LogAccessor(LogFactory.getLog(getClass()));
 
     private final Set<Class<?>> nonAnnotatedClasses = Collections.synchronizedSet(new HashSet<>());
 
