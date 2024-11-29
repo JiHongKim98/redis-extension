@@ -17,7 +17,9 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.MethodIntrospector;
 import org.springframework.core.MethodIntrospector.MetadataLookup;
 import org.springframework.core.annotation.AnnotatedElementUtils;
-import org.springframework.data.redis.listener.Topic;
+import org.springframework.data.redis.listener.ChannelTopic;
+import org.springframework.data.redis.listener.PatternTopic;
+import org.springframework.util.Assert;
 
 public class RedisBroadcastAnnotationBeanPostProcessor implements
         BeanPostProcessor, SmartInitializingSingleton, ApplicationContextAware {
@@ -45,25 +47,55 @@ public class RedisBroadcastAnnotationBeanPostProcessor implements
                 (MetadataLookup<RedisBroadcastListener>) method ->
                         AnnotatedElementUtils.findMergedAnnotation(method, RedisBroadcastListener.class)
         );
+
         if (annotationMethods.isEmpty()) {
             nonAnnotatedClasses.add(targetClass);
-            return;
         }
-        annotationMethods.values().stream()
-                .map(this::createTopic)
-                .forEach(topic -> channelRegistrar.registerChannel(bean, topic));
+
+        annotationMethods.forEach((key, value) -> processAnnotation(bean, key, value));
     }
 
-    private Topic createTopic(RedisBroadcastListener annotation) {
-        // TODO
+    private void processAnnotation(Object bean, Method method, RedisBroadcastListener annotation) {
+        String[] channels = annotation.channels();
+        String[] patterns = annotation.patterns();
 
-        return null;
+        boolean hasChannels = hasValidValues(channels);
+        boolean hasPatterns = hasValidValues(patterns);
+
+        Assert.state(hasChannels || hasPatterns,
+                "Either 'channels' or 'patterns' must be defined and must not contain empty values.");
+
+        if (hasChannels) {
+            for (String channel : channels) {
+                ChannelTopic channelTopic = new ChannelTopic(channel);
+                this.channelRegistrar.registerChannel(bean, method, channelTopic);
+            }
+        }
+
+        if (hasPatterns) {
+            for (String pattern : patterns) {
+                PatternTopic patternTopic = new PatternTopic(pattern);
+                this.channelRegistrar.registerChannel(bean, method, patternTopic);
+            }
+        }
+    }
+
+    private boolean hasValidValues(String[] array) {
+        if (array == null || array.length == 0) {
+            return false;
+        }
+        for (String value : array) {
+            if (value == null || value.trim().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public void afterSingletonsInstantiated() {
-        // TODO
-
+        this.channelRegistrar.setApplicationContext(applicationContext);
+        this.channelRegistrar.afterSingletonsInstantiated();
     }
 
     @Override
