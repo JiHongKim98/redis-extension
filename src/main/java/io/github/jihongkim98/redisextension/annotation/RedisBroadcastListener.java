@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RedisBroadcastListener {
 
-    String[] channels();
+    String[] channels() default {};
 
     String[] patterns() default {};
 }
