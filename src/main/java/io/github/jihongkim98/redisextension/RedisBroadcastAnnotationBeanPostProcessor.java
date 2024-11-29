@@ -28,7 +28,7 @@ public class RedisBroadcastAnnotationBeanPostProcessor implements
 
     private final Set<Class<?>> nonAnnotatedClasses = Collections.synchronizedSet(new HashSet<>());
 
-    private final ChannelRegistrar channelRegistrar = new ChannelRegistrar();
+    private final TopicRegistrar topicRegistrar = new TopicRegistrar();
 
     private ApplicationContext applicationContext;
 
@@ -68,14 +68,14 @@ public class RedisBroadcastAnnotationBeanPostProcessor implements
         if (hasChannels) {
             for (String channel : channels) {
                 ChannelTopic channelTopic = new ChannelTopic(channel);
-                this.channelRegistrar.registerChannel(bean, method, channelTopic);
+                this.topicRegistrar.registry(bean, method, channelTopic);
             }
         }
 
         if (hasPatterns) {
             for (String pattern : patterns) {
                 PatternTopic patternTopic = new PatternTopic(pattern);
-                this.channelRegistrar.registerChannel(bean, method, patternTopic);
+                this.topicRegistrar.registry(bean, method, patternTopic);
             }
         }
     }
@@ -94,8 +94,8 @@ public class RedisBroadcastAnnotationBeanPostProcessor implements
 
     @Override
     public void afterSingletonsInstantiated() {
-        this.channelRegistrar.setApplicationContext(applicationContext);
-        this.channelRegistrar.afterSingletonsInstantiated();
+        this.topicRegistrar.setApplicationContext(applicationContext);
+        this.topicRegistrar.afterSingletonsInstantiated();
     }
 
     @Override

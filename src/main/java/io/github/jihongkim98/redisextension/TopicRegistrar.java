@@ -7,13 +7,13 @@ import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.redis.listener.Topic;
 
-public class ChannelRegistrar implements SmartInitializingSingleton {
+public class TopicRegistrar implements SmartInitializingSingleton {
 
-    private final Log logger = LogFactory.getLog(ChannelRegistrar.class);
+    private final Log logger = LogFactory.getLog(TopicRegistrar.class);
 
     private ApplicationContext applicationContext;
 
-    public void registerChannel(Object delegate, Method method, Topic topic) {
+    public void registry(Object delegate, Method method, Topic topic) {
         // TODO
 
     }
