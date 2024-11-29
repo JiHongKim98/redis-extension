@@ -1,4 +1,4 @@
-package io.github.jihongkim98.redisextension;
+package io.github.jihongkim98.redisextensions;
 
 import org.springframework.context.annotation.DeferredImportSelector;
 import org.springframework.core.annotation.Order;

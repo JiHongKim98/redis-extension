@@ -1,8 +1,8 @@
-package io.github.jihongkim98.redisextension.aot;
+package io.github.jihongkim98.redisextensions.aot;
 
-import io.github.jihongkim98.redisextension.BroadcastMethodInvoker;
-import io.github.jihongkim98.redisextension.RedisBroadcastAnnotationBeanPostProcessor;
-import io.github.jihongkim98.redisextension.annotation.RedisBroadcastListener;
+import io.github.jihongkim98.redisextensions.BroadcastMethodInvoker;
+import io.github.jihongkim98.redisextensions.RedisBroadcastAnnotationBeanPostProcessor;
+import io.github.jihongkim98.redisextensions.annotation.RedisBroadcastListener;
 import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;

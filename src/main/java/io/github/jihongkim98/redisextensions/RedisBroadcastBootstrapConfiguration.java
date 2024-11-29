@@ -1,4 +1,4 @@
-package io.github.jihongkim98.redisextension;
+package io.github.jihongkim98.redisextensions;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.RootBeanDefinition;

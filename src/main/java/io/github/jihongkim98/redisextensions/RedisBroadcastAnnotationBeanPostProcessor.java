@@ -1,6 +1,6 @@
-package io.github.jihongkim98.redisextension;
+package io.github.jihongkim98.redisextensions;
 
-import io.github.jihongkim98.redisextension.annotation.RedisBroadcastListener;
+import io.github.jihongkim98.redisextensions.annotation.RedisBroadcastListener;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.HashSet;

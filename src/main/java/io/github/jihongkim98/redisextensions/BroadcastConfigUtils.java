@@ -1,4 +1,4 @@
-package io.github.jihongkim98.redisextension;
+package io.github.jihongkim98.redisextensions;
 
 public class BroadcastConfigUtils {
 

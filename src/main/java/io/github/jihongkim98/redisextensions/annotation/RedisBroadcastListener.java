@@ -1,4 +1,4 @@
-package io.github.jihongkim98.redisextension.annotation;
+package io.github.jihongkim98.redisextensions.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

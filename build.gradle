@@ -34,18 +34,18 @@ mavenPublishing {
 
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-    coordinates('io.github.jihongkim98', 'redis-extension', '0.1.0')
+    coordinates('io.github.jihongkim98', 'redis-extensions', '0.0.1')
 
     pom {
-        name = 'redis-extension'
+        name = 'redis-extensions'
         inceptionYear = '2024'
         description = 'Spring Data Redis Message Extension Library'
-        url = '<https://github.com/jihongkim98/redis-extension>'
+        url = '<https://github.com/jihongkim98/redis-extensions>'
 
         licenses {
             license {
                 name = 'Apache License'
-                url = '<https://github.com/jihongkim/redis-extension/blob/main/LICENSE>'
+                url = '<https://github.com/jihongkim/redis-extensions/blob/main/LICENSE>'
             }
         }
 
@@ -58,9 +58,9 @@ mavenPublishing {
         }
 
         scm {
-            connection = 'scm:git:github.com/jihongkim98/redis-extension.git'
-            developerConnection = 'scm:git:ssh://github.com:jihongkim98/redis-extension.git'
-            url = '<https://github.com/jihongkim98/redis-extension/tree/main>'
+            connection = 'scm:git:github.com/jihongkim98/redis-extensions.git'
+            developerConnection = 'scm:git:ssh://github.com:jihongkim98/redis-extensions.git'
+            url = '<https://github.com/jihongkim98/redis-extensions/tree/main>'
         }
     }
 }

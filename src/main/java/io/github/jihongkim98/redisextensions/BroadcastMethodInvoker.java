@@ -1,4 +1,4 @@
-package io.github.jihongkim98.redisextension;
+package io.github.jihongkim98.redisextensions;
 
 import java.lang.reflect.Method;
 import org.apache.commons.logging.LogFactory;
