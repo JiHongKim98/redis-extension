@@ -44,8 +44,8 @@ mavenPublishing {
 
         licenses {
             license {
-                name = 'Apache License'
-                url = '<https://github.com/jihongkim/redis-extensions/blob/main/LICENSE>'
+                name = 'The Apache License, Version 2.0'
+                url = 'https://github.com/jihongkim98/redis-extensions/blob/main/LICENSE'
             }
         }
 
@@ -60,7 +60,7 @@ mavenPublishing {
         scm {
             connection = 'scm:git:github.com/jihongkim98/redis-extensions.git'
             developerConnection = 'scm:git:ssh://github.com:jihongkim98/redis-extensions.git'
-            url = '<https://github.com/jihongkim98/redis-extensions/tree/main>'
+            url = 'https://github.com/jihongkim98/redis-extensions'
         }
     }
 }
