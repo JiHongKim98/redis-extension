@@ -19,6 +19,11 @@ public class BroadcastMethodInvoker implements MessageListener {
 
     public BroadcastMethodInvoker(Object delegate, Method method) {
         this.delegate = delegate;
+
+        // support private method
+        if (!method.canAccess(delegate)) {
+            method.setAccessible(true);
+        }
         this.method = method;
     }
 
