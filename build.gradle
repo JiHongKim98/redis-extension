@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'io.github.jihongkim98'
-version = '0.1.0'
+version = '0.0.2'
 
 java {
     toolchain {
@@ -34,7 +34,7 @@ mavenPublishing {
 
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-    coordinates('io.github.jihongkim98', 'redis-extensions', '0.0.1')
+    coordinates('io.github.jihongkim98', 'redis-extensions', '0.0.2')
 
     pom {
         name = 'redis-extensions'
